@@ -33,7 +33,6 @@ public class CategoriaController {
         ModelAndView mv = new ModelAndView("categorias");
         Page<Categoria> categorias = categoriaService.findAll(PageRequest.of(currentPage - 1, pageSize));
         mv.addObject("categorias", categorias);
-
         int totalPages = categorias.getTotalPages();
         if (totalPages > 0) {
             List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
@@ -41,7 +40,6 @@ public class CategoriaController {
                     .collect(Collectors.toList());
             mv.addObject("pageNumbers", pageNumbers);
         }
-
         return mv;
     }
 
@@ -53,7 +51,6 @@ public class CategoriaController {
         mv.addObject("categorias", categorias);
         return mv;
     }
-
 
     @RequestMapping(value = "/categoria", method = RequestMethod.GET)
     public ModelAndView getCategorias() {

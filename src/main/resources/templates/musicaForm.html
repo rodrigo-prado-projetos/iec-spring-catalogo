@@ -37,18 +37,26 @@
                 </textarea>
                 <div class="alert alert-warning" th:if="${#fields.hasErrors('letra')}" th:errors="*{letra}"></div>
 
-                <small class="form-text text-muted">(*) Campos obrigatórios</small>
+                <br/>
 
-
-                <select name="categoria.id" class="form-control">
-                    <c:forEach items="${categoria}" var="categoria" varStatus="status">
-                        <div>
-                            <option value="${categoria.id}">${categoria.nome}</option>
-                        </div>
-                    </c:forEach>
+                Seleciona a categoria:
+                <select name="categoria">
+                    <option
+                            th:text="---"
+                            th:value="---">
+                    </option>
+                    <option th:each="categoria: ${findAllCategorias}"
+                            th:text="${categoria.nome}"
+                            th:value=" ${categoria.id}">
+                    </option>
                 </select>
-                </a>
+                <br/>
+                <br/>
+                <br/>
+                <div class="alert alert-warning" th:text="${mensagemCategoria}" th:if="${mensagemCategoria}"></div>
+                <br/>
 
+                <small class="form-text text-muted">(*) Campos obrigatórios</small>
 
                 <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Publicar</button>
                 <a href="/musicas" class="btn btn-light" role="button" style="margin-top: 10px;">Cancelar</a>

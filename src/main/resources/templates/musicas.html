@@ -16,6 +16,12 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Procurar</button>
             </form>
 
+            <form class="form-inline" th:action="@{/musicas/categoria/pesquisar(nome=${nome})}"
+                  method="GET">
+                <input class="form-control mr-sm-2" placeholder="Categoria" type="text" th:value="${nome}" th:name="nome"
+                       aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Procurar</button>
+            </form>
             <a th:href="@{/addMusica}" class="btn btn-primary" role="button">Adicionar</a>
         </nav>
         <div class="card" style="margin-top: 20px;" th:each="musica : ${musicas}">
@@ -23,8 +29,8 @@
                 <div class="row">
                     <div class="col-sm-8">
                         <p class="card-subtitle mb-2 text-muted">
-                            <span th:text="${musica.autor}"></span> |
-                            <span th:text="${musica.data}"></span>
+                            Autor: <span th:text="${musica.autor}"></span> |
+                            Data: <span th:text="${musica.data}"></span>
                         </p>
                     </div>
                     <div class="col-sm-4">
@@ -40,9 +46,13 @@
                 <a th:href="${(#mvc.url('CC#getMusicaDetalhes').arg(0, musica.id)).build()}"><h4 class="card-title"
                                                                                                  style="font-weight: bold; color: black; padding-top: 5px;">
                     <span th:text="${musica.titulo}"></span></h4></a>
-                <span th:utext="${musica.titulo}"> </span> </h4> </a>
 
-                <p class="card-text"><span th:utext="${#strings.abbreviate(musica.letra,200)}"> </span></p>
+                <div>
+                    Categoria: <span th:utext="${musica.categoria.nome}"> </span> </h4> </a>
+                </div>
+
+
+                Letra: <span th:utext="${#strings.abbreviate(musica.letra,200)}"> </span>
             </div>
         </div>
     </div>

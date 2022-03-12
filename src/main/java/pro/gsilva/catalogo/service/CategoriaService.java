@@ -9,10 +9,7 @@ import java.util.List;
 public interface CategoriaService {
     Page<Categoria> findAll(Pageable pageable);
     Categoria save(Categoria categoria);
-
     List<Categoria> findByNome(String nome);
-
     void excluir(long id);
-
     Categoria findById(long id);
 }
