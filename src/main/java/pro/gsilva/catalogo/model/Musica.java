@@ -1,25 +1,18 @@
 package pro.gsilva.catalogo.model;
 
 
-import java.time.LocalDate;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import lombok.Data;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "TB_MUSICA")
 @Data
 public class Musica {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -37,5 +30,9 @@ public class Musica {
     @Lob
     private String letra;
 
-    
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", referencedColumnName = "id", nullable = true)
+    private Categoria categoria;
+
+
 }

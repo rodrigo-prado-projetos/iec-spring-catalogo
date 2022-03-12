@@ -39,6 +39,17 @@
 
                 <small class="form-text text-muted">(*) Campos obrigatórios</small>
 
+
+                <select name="categoria.id" class="form-control">
+                    <c:forEach items="${categoria}" var="categoria" varStatus="status">
+                        <div>
+                            <option value="${categoria.id}">${categoria.nome}</option>
+                        </div>
+                    </c:forEach>
+                </select>
+                </a>
+
+
                 <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Publicar</button>
                 <a href="/musicas" class="btn btn-light" role="button" style="margin-top: 10px;">Cancelar</a>
             </form>
